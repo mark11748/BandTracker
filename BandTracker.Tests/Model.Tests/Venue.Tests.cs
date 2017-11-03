@@ -93,12 +93,12 @@ namespace BandTracker.Models.Tests
       Venue newVenueC = new Venue("test3");
       newVenueC.Save();
 
-      Console.WriteLine(newVenueC.GetName()+" : "+newVenueC.GetId()+" | "+Venue.GetAll()[1].GetName()+" : "+Venue.GetAll()[1].GetId());
+      // Console.WriteLine(newVenueC.GetName()+" : "+newVenueC.GetId()+" | "+Venue.GetAll()[1].GetName()+" : "+Venue.GetAll()[1].GetId());
 
       Assert.AreEqual(true, Venue.GetAll().Count == 3);
       Venue.DeleteOne(newVenueB.GetId());
 
-      Console.WriteLine(newVenueC.GetName()+" : "+newVenueC.GetId()+" | "+Venue.GetAll()[1].GetName()+" : "+Venue.GetAll()[1].GetId());
+      // Console.WriteLine(newVenueC.GetName()+" : "+newVenueC.GetId()+" | "+Venue.GetAll()[1].GetName()+" : "+Venue.GetAll()[1].GetId());
 
       Assert.AreEqual(true, Venue.GetAll().Count == 2);
       Assert.AreEqual(true, Venue.GetAll()[1].Equals(newVenueC));
