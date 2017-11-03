@@ -91,7 +91,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand();
-      cmd.CommandText = @"SELECT * FROM venues WHERE bands.id=@id;";
+      cmd.CommandText = @"SELECT * FROM venues WHERE id=@id;";
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@id";
@@ -112,7 +112,7 @@ namespace BandTracker.Models
       return searchResult;
     }
 
-    public void Update(string newName)
+    public void Update(string newName="")
     {
       if(!String.IsNullOrEmpty(newName))
       {this.SetName(newName);}
@@ -120,7 +120,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand();
-      cmd.CommandText = @"SET venues.name=@name FROM venues WHERE venues.id=@id;";
+      cmd.CommandText = @"UPDATE venues SET name=@name WHERE id=@id;";
 
       MySqlParameter targetName = new MySqlParameter();
       targetName.ParameterName = "@name";
@@ -155,7 +155,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand();
-      cmd.CommandText = @"DELETE FROM venues WHERE venus.id=@id;";
+      cmd.CommandText = @"DELETE FROM venues WHERE id=@id;";
 
       MySqlParameter targetId = new MySqlParameter();
       targetId.ParameterName = "@id";

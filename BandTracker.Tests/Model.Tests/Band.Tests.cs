@@ -15,8 +15,8 @@ namespace BandTracker.Models.Tests
     }
     public void Dispose()
     {
-      // Band.ClearAll();
-      // Venue.ClearAll();
+      Band.DeleteAll();
+      Venue.DeleteAll();
     }
     [TestMethod]
     public void Save_SaveBand()
