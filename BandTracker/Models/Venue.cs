@@ -61,7 +61,7 @@ namespace BandTracker.Models
       {conn.Dispose();}
     }
 
-    public static List<Band> GetAll()
+    public static List<Venue> GetAll()
     {
       List<Venue> allVenues = new List<Venue>();
 
@@ -95,7 +95,7 @@ namespace BandTracker.Models
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@id";
-      searchId.Value = id();
+      searchId.Value = id;
       cmd.Parameters.Add(searchId);
 
       MySqlDataReader rdr = cmd.ExecuteReader();
@@ -103,7 +103,7 @@ namespace BandTracker.Models
       {
         int    venueNumb = rdr.GetInt32(0);
         string venueName = rdr.GetString(1);
-        searchResult = new Venue(venueName,venueNumb));
+        searchResult = new Venue(venueName,venueNumb);
       }
       conn.Close();
       if (conn != null)
@@ -115,7 +115,7 @@ namespace BandTracker.Models
     public void Update(string newName)
     {
       if(!String.IsNullOrEmpty(newName))
-      {this.Name = newName;}
+      {this.SetName(newName);}
 
       MySqlConnection conn = DB.Connection();
       conn.Open();

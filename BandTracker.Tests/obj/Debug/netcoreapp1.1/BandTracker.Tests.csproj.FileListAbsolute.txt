@@ -1,0 +1,14 @@
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/BandTracker.Tests.deps.json
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/BandTracker.Tests.runtimeconfig.json
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/BandTracker.Tests.runtimeconfig.dev.json
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/BandTracker.Tests.dll
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/BandTracker.Tests.pdb
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/BandTracker.dll
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/bin/Debug/netcoreapp1.1/BandTracker.pdb
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/obj/Debug/netcoreapp1.1/BandTracker.Tests.csproj.CoreCompileInputs.cache
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/obj/Debug/netcoreapp1.1/BandTracker.Tests.AssemblyInfo.cs
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/obj/Debug/netcoreapp1.1/BandTracker.Tests.dll
+/Users/markWoodward/Desktop/BandTracker.Solution/BandTracker.Tests/obj/Debug/netcoreapp1.1/BandTracker.Tests.pdb

@@ -95,7 +95,7 @@ namespace BandTracker.Models
 
       MySqlParameter searchId = new MySqlParameter();
       searchId.ParameterName = "@id";
-      searchId.Value = id();
+      searchId.Value = id;
       cmd.Parameters.Add(searchId);
 
       MySqlDataReader rdr = cmd.ExecuteReader();
@@ -103,7 +103,7 @@ namespace BandTracker.Models
       {
         int    bandNumb = rdr.GetInt32(0);
         string bandName = rdr.GetString(1);
-        searchResult = new Band(bandName,bandNumb));
+        searchResult = new Band(bandName,bandNumb);
       }
       conn.Close();
       if (conn != null)
@@ -115,7 +115,7 @@ namespace BandTracker.Models
     public void Update(string newName)
     {
       if(!String.IsNullOrEmpty(newName))
-      {this.Name = newName;}
+      {this.SetName(newName);}
 
       MySqlConnection conn = DB.Connection();
       conn.Open();

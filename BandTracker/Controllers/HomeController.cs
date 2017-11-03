@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using UniversityRegistrar.Models;
+using BandTracker.Models;
 
-namespace UniversityRegistrar.Controllers
+namespace BandTracker.Controllers
 {
   public class HomeController : Controller
   {
