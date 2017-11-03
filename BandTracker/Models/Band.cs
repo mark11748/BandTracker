@@ -112,6 +112,31 @@ namespace BandTracker.Models
       return searchResult;
     }
 
+    public void Update(string newName)
+    {
+      if(!String.IsNullOrEmpty(newName))
+      {this.Name = newName;}
+
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand();
+      cmd.CommandText = @"SET bands.name=@name FROM bands WHERE bands.id=@id;";
+
+      MySqlParameter targetName = new MySqlParameter();
+      targetName.ParameterName = "@name";
+      targetName.Value = this.GetName();
+      cmd.Parameters.Add(targetName);
+      MySqlParameter targetId = new MySqlParameter();
+      targetId.ParameterName = "@id";
+      targetId.Value = this.GetId();
+      cmd.Parameters.Add(targetId);
+
+      cmd.ExecuteNonQuery();
+      conn.Close();
+      if (conn != null)
+      {conn.Dispose();}
+    }
+
     public static void DeleteAll()
     {
       MySqlConnection conn = DB.Connection();
@@ -144,6 +169,6 @@ namespace BandTracker.Models
       {conn.Dispose();}
     }
 
-    
+
   }
 }
