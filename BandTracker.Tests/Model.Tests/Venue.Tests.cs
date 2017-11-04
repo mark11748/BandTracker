@@ -137,6 +137,9 @@ namespace BandTracker.Models.Tests
       newVenueB.Save();
       Venue newVenueC = new Venue("test3");
       newVenueC.Save();
+      Venue newVenueD = new Venue("test4");
+      newVenueD.Save();
+
       //Bands
       Band newBandA = new Band("Journey");
       newBandA.Save();
@@ -144,27 +147,19 @@ namespace BandTracker.Models.Tests
       newBandB.Save();
       Band newBandC = new Band("Def Leopard");
       newBandC.Save();
-      Band newBandD = new Band("Styx");
-      newBandD.Save();
-      Band newBandE = new Band("AudioSlave");
-      newBandE.Save();
 
-      // //Bands A&B use the same venues
-      // newBandA.AddHost(newVenueA.GetId());
-      // newBandA.AddHost(newVenueB.GetId());
-      // newBandB.AddHost(newVenueA.GetId());
-      // newBandB.AddHost(newVenueB.GetId());
-      // //Bands C&D use differing venues
-      // newBandC.AddHost(newVenueB.GetId());
-      // newBandD.AddHost(newVenueC.GetId());
-      // //Band E has no venues recorded as having hosted them
-      //
-      // CollectionAssert.AreEqual(newBandA.GetSchedule(),newBandB.GetSchedule());
-      // CollectionAssert.AreEqual(newBandC.GetSchedule(),newBandD.GetSchedule());
-      // Assert.AreEqual(true,newBandC.GetSchedule().Count==0);
+      //Bands A&B use the same venues
+      newVenueA.AddBand(newBandA.GetId());
+      newVenueA.AddBand(newBandB.GetId());
+      newVenueB.AddBand(newBandA.GetId());
+      newVenueB.AddBand(newBandB.GetId());
+      //Bands C&D use differing venues
+      newVenueC.AddBand(newBandB.GetId());
+      newVenueD.AddBand(newBandC.GetId());
 
-
-
+      Assert.AreEqual(newVenueA.GetSchedule()[0],newBandA);
+      Assert.AreEqual(newVenueA.GetSchedule()[1],newVenueB.GetSchedule()[1]);
+      Assert.AreEqual(true, newVenueC.GetSchedule()[0]!=newVenueD.GetSchedule()[0]);
     }
 
 
