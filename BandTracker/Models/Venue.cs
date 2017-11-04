@@ -142,7 +142,7 @@ namespace BandTracker.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand();
-      cmd.CommandText = @"DELETE FROM venues; ALTER TABLE venues AUTO_INCREMENT = 1;";
+      cmd.CommandText = @"DELETE FROM venues; DELETE FROM bands_venues; ALTER TABLE venues AUTO_INCREMENT = 1;";
 
       cmd.ExecuteNonQuery();
 
@@ -150,12 +150,13 @@ namespace BandTracker.Models
       if (conn != null)
       {conn.Dispose();}
     }
+
     public static void DeleteOne(int id)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand();
-      cmd.CommandText = @"DELETE FROM venues WHERE id=@id;";
+      cmd.CommandText = @"DELETE FROM venues WHERE id=@id; DELETE FROM bands_venues WHERE venue_id=@id";
 
       MySqlParameter targetId = new MySqlParameter();
       targetId.ParameterName = "@id";
@@ -188,7 +189,6 @@ namespace BandTracker.Models
         cmd.Parameters.Add(hostVenue);
 
         cmd.ExecuteNonQuery();
-        this.SetId((int)cmd.LastInsertedId);
 
         conn.Close();
         if (conn != null)
@@ -222,6 +222,32 @@ namespace BandTracker.Models
       {conn.Dispose();}
 
       return scheduledBands;
+    }
+
+    public void RemoveBand(int bandId)
+    {
+      if (bandId>0)
+      {
+        MySqlConnection conn = DB.Connection();
+        conn.Open();
+        MySqlCommand cmd = conn.CreateCommand();
+        cmd.CommandText = @"DELETE FROM bands_venues JOIN bands ON(bands_venues.band_id=bands.id) WHERE bands_venues.band_id=@bandId AND bands_venues.venue_id=@hostId;";
+
+        MySqlParameter targetBand = new MySqlParameter();
+        targetBand.ParameterName = "@bandId";
+        targetBand.Value = bandId;
+        cmd.Parameters.Add(targetBand);
+        MySqlParameter sourceHost = new MySqlParameter();
+        sourceHost.ParameterName = "@hostId";
+        sourceHost.Value = this.GetId();
+        cmd.Parameters.Add(sourceHost);
+
+        cmd.ExecuteNonQuery();
+
+        conn.Close();
+        if (conn != null)
+        {conn.Dispose();}
+      }
     }
 
   }

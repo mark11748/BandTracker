@@ -39,11 +39,6 @@ namespace BandTracker.Models.Tests
       // Console.WriteLine(newVenueA.GetName()+" : "+newVenueA.GetId()+" | "+Venue.GetAll()[0].GetName()+" : "+Venue.GetAll()[0].GetId()+" | "+(newVenueA.Equals(Venue.GetAll()[0])).ToString());
       // Console.WriteLine(newVenueA.GetName()+" : "+newVenueA.GetId()+" | "+Venue.GetAll()[0].GetName()+" : "+Venue.GetAll()[0].GetId()+" | "+(newVenueA.Equals(Venue.GetAll()[0])).ToString());
 
-      foreach (Venue v in Venue.GetAll())
-      {
-
-      }
-
       Assert.AreEqual(true, Venue.GetAll().Count==3);
       Assert.AreEqual(true, Venue.GetAll()[0].Equals(newVenueA));
       Assert.AreEqual(true, Venue.GetAll()[1].Equals(newVenueB));
@@ -104,6 +99,73 @@ namespace BandTracker.Models.Tests
       Assert.AreEqual(true, Venue.GetAll()[1].Equals(newVenueC));
     }
 
+    [TestMethod]
+    public void AddBand_AssosiateVenuteWithBand()
+    {
+      //Venues
+      Venue newVenueA = new Venue("test1");
+      newVenueA.Save();
+      Venue newVenueB = new Venue("test2");
+      newVenueB.Save();
+      Venue newVenueC = new Venue("test3");
+      newVenueC.Save();
+      //Bands
+      Band newBandA = new Band("Journey");
+      newBandA.Save();
+      Band newBandB = new Band("AC/DC");
+      newBandB.Save();
+      Band newBandC = new Band("Def Leopard");
+      newBandC.Save();
+
+      newVenueA.AddBand(newBandA.GetId());
+      newVenueB.AddBand(newBandB.GetId());
+      newVenueB.AddBand(newBandC.GetId());
+
+      // Console.WriteLine(newVenueA.GetName()+" : "+newVenueA.GetId()+" : "+newVenueA.GetSchedule().Count);
+      Assert.AreEqual(true,newVenueA.GetSchedule().Count==1);
+      Assert.AreEqual(true,newVenueB.GetSchedule().Count==2);
+      Assert.AreEqual(true,newVenueC.GetSchedule().Count==0);
+    }
+
+    [TestMethod]
+    public void GetSchedule_GetListOfAllVenutesAssosiatedWithBand()
+    {
+      //Venues
+      Venue newVenueA = new Venue("test1");
+      newVenueA.Save();
+      Venue newVenueB = new Venue("test2");
+      newVenueB.Save();
+      Venue newVenueC = new Venue("test3");
+      newVenueC.Save();
+      //Bands
+      Band newBandA = new Band("Journey");
+      newBandA.Save();
+      Band newBandB = new Band("AC/DC");
+      newBandB.Save();
+      Band newBandC = new Band("Def Leopard");
+      newBandC.Save();
+      Band newBandD = new Band("Styx");
+      newBandD.Save();
+      Band newBandE = new Band("AudioSlave");
+      newBandE.Save();
+
+      // //Bands A&B use the same venues
+      // newBandA.AddHost(newVenueA.GetId());
+      // newBandA.AddHost(newVenueB.GetId());
+      // newBandB.AddHost(newVenueA.GetId());
+      // newBandB.AddHost(newVenueB.GetId());
+      // //Bands C&D use differing venues
+      // newBandC.AddHost(newVenueB.GetId());
+      // newBandD.AddHost(newVenueC.GetId());
+      // //Band E has no venues recorded as having hosted them
+      //
+      // CollectionAssert.AreEqual(newBandA.GetSchedule(),newBandB.GetSchedule());
+      // CollectionAssert.AreEqual(newBandC.GetSchedule(),newBandD.GetSchedule());
+      // Assert.AreEqual(true,newBandC.GetSchedule().Count==0);
+
+
+
+    }
 
 
 
