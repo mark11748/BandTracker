@@ -1,0 +1,9 @@
+@{Layout="_Layout";}
+
+<p>list of venues associated with band:</p>
+@{
+  foreach (var v in Model.GetBands()[0].GetVenueList())
+  {
+    <li> @v.GetId() : @v.GetName() </li>
+  }
+}

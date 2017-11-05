@@ -1,0 +1,9 @@
+@{Layout="_Layout";}
+
+<p>list of bands:</p>
+@{
+  foreach (var b in Model.GetVenues()[0].GetSchedule())
+  {
+    <li><a href="/clientList/@Model.GetVenues()[0].GetId()/clientDetails/@b.GetId()/">@b.GetId() : @b.GetName()</a></li>
+  }
+}
