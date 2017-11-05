@@ -137,6 +137,7 @@ namespace BandTracker.Models.Tests
       newVenueB.Save();
       Venue newVenueC = new Venue("test3");
       newVenueC.Save();
+
       //Bands
       Band newBandA = new Band("Journey");
       newBandA.Save();
@@ -161,6 +162,50 @@ namespace BandTracker.Models.Tests
       Assert.AreEqual(true, newBandC.GetVenueList()[0]!=newBandD.GetVenueList()[0]);
     }
 
+    [TestMethod]
+    public void RemoveBand()
+    {
+      //Venues
+      Venue newVenueA = new Venue("test1");
+      newVenueA.Save();
+      Venue newVenueB = new Venue("test2");
+      newVenueB.Save();
+      Venue newVenueC = new Venue("test3");
+      newVenueC.Save();
 
+      //Bands
+      Band newBandA = new Band("Journey");
+      newBandA.Save();
+      Band newBandB = new Band("AC/DC");
+      newBandB.Save();
+      Band newBandC = new Band("Def Leopard");
+      newBandC.Save();
+
+      List<Venue> allVenues = new List<Venue>();
+      allVenues.Add(newVenueA);
+      allVenues.Add(newVenueB);
+      allVenues.Add(newVenueC);
+      List<Band> allBands = new List<Band>();
+      allBands.Add(newBandA);
+      allBands.Add(newBandB);
+      allBands.Add(newBandC);
+
+      foreach (Band band in allBands)
+      {
+        foreach (Venue venue in allVenues)
+        { band.AddHost(venue.GetId()); }
+      }
+      List<Venue> initialHostList = newBandA.GetVenueList();
+      newBandA.RemoveVenue(newVenueA.GetId());
+      List<Venue> alteredHostList = newBandA.GetVenueList();
+
+
+      Assert.AreEqual(true, alteredHostList.Count == initialHostList.Count-1);
+      Assert.AreEqual(true,!alteredHostList.Contains(newVenueA));
+      Assert.AreEqual(true, alteredHostList.Contains(newVenueB));
+      Assert.AreEqual(true, alteredHostList.Contains(newVenueC));
+      Assert.AreEqual(true, newBandB.GetVenueList().Contains(newVenueA) && newBandB.GetVenueList().Count == 3);
+      Assert.AreEqual(true, newBandC.GetVenueList().Contains(newVenueA) && newBandC.GetVenueList().Count == 3);
+    }
   }
 }

@@ -231,7 +231,7 @@ namespace BandTracker.Models
         MySqlConnection conn = DB.Connection();
         conn.Open();
         MySqlCommand cmd = conn.CreateCommand();
-        cmd.CommandText = @"DELETE FROM bands_venues JOIN venues ON(bands_venues.venue_id=venues.id) WHERE bands_venues.band_id=@bandId AND bands_venues.venue_id=@hostId;";
+        cmd.CommandText = @"DELETE FROM bands_venues WHERE band_id=@bandId AND venue_id=@hostId;";
 
         MySqlParameter targetBand = new MySqlParameter();
         targetBand.ParameterName = "@bandId";

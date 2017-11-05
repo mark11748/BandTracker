@@ -162,7 +162,50 @@ namespace BandTracker.Models.Tests
       Assert.AreEqual(true, newVenueC.GetSchedule()[0]!=newVenueD.GetSchedule()[0]);
     }
 
+    [TestMethod]
+    public void RemoveBand()
+    {
+      //Venues
+      Venue newVenueA = new Venue("test1");
+      newVenueA.Save();
+      Venue newVenueB = new Venue("test2");
+      newVenueB.Save();
+      Venue newVenueC = new Venue("test3");
+      newVenueC.Save();
+
+      //Bands
+      Band newBandA = new Band("Journey");
+      newBandA.Save();
+      Band newBandB = new Band("AC/DC");
+      newBandB.Save();
+      Band newBandC = new Band("Def Leopard");
+      newBandC.Save();
+
+      List<Venue> allVenues = new List<Venue>();
+      allVenues.Add(newVenueA);
+      allVenues.Add(newVenueB);
+      allVenues.Add(newVenueC);
+      List<Band> allBands = new List<Band>();
+      allBands.Add(newBandA);
+      allBands.Add(newBandB);
+      allBands.Add(newBandC);
+
+      foreach (Venue venue in allVenues)
+      {
+        foreach (Band band in allBands)
+        { venue.AddBand(band.GetId()); }
+      }
+      List<Band> initialClientList = newVenueA.GetSchedule();
+      newVenueA.RemoveBand(newBandA.GetId());
+      List<Band> alteredClientList = newVenueA.GetSchedule();
 
 
+      Assert.AreEqual(true, alteredClientList.Count == initialClientList.Count-1);
+      Assert.AreEqual(true,!alteredClientList.Contains(newBandA));
+      Assert.AreEqual(true, alteredClientList.Contains(newBandB));
+      Assert.AreEqual(true, alteredClientList.Contains(newBandC));
+      Assert.AreEqual(true, newVenueB.GetSchedule().Contains(newBandA) && newVenueB.GetSchedule().Count == 3);
+      Assert.AreEqual(true, newVenueC.GetSchedule().Contains(newBandA) && newVenueC.GetSchedule().Count == 3);
+    }
   }
 }
