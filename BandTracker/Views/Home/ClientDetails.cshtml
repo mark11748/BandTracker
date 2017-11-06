@@ -1,9 +1,26 @@
+@using BandTracker.Models
 @{Layout="_Layout";}
 
 <p>list of venues associated with band:</p>
+<ul>
 @{
   foreach (var v in Model.GetBands()[0].GetVenueList())
   {
-    <li> @v.GetId() : @v.GetName() </li>
+    <li><div class="entry">
+      @v.GetId() : @v.GetName() <form method="post" action="/clientList/@Model.GetVenues()[0].GetId()/clientDetails/@Model.GetBands()[0].GetId()/removeHost/@v.GetId()"><button type="submit" name="submit">[delete]</button></form>
+    </div></li>
   }
 }
+</ul>
+<p>---------------------</p>
+<form method="post" action="/clientList/@Model.GetVenues()[0].GetId()/clientDetails/@Model.GetBands()[0].GetId()/addHost">
+  <label for="new-venue">add a venue to the band:</label>
+  <select name="new-venue">
+    <option value="0" selected="true">N/a</option>
+    @{
+      foreach (var venue in Venue.GetAll())
+      { <option value="@venue.GetId()">@venue.GetName()</option> }
+    }
+  </select>
+  <button type="submit" name="submit">[add]</button>
+</form>

@@ -99,5 +99,24 @@ namespace BandTracker.Controllers
       return View(model);
     }
 
+    [HttpPost("/clientList/{venueId}/clientDetails/{bandId}/addHost")]
+    public ActionResult AddHost(int venueId,int bandId)
+    {
+      int val;
+      if(Int32.TryParse(Request.Form["new-venue"], out val) && val >0)
+      {
+        Band.Find(bandId).AddHost(Int32.Parse(Request.Form["new-venue"]));
+      }
+      VenueBand model = new VenueBand(Venue.Find(venueId),Band.Find(bandId));
+      return View("ClientDetails",model);
+    }
+
+    [HttpPost("/clientList/{venueId}/clientDetails/{bandId}/removeHost/{targetId}")]
+    public ActionResult DeleteOneVenue(int venueId,int bandId,int targetId)
+    {
+      Band.Find(bandId).RemoveVenue(targetId);
+      VenueBand model = new VenueBand();
+      return View("ClientDetails",model);
+    }
   }
 }
