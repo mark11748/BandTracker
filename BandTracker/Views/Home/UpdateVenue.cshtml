@@ -1,0 +1,16 @@
+@using BandTracker.Models
+@{Layout="_Layout";}
+<br>
+<form method="post" action="/updated/@Model.GetVenues()[0].GetId()">
+  <label for="new-name">change venue name:</label>
+  <input type="text" name="new-name" placeholder="New Venue Name">
+  <label for="new-client">add a client band:</label>
+  <select name="new-client">
+    <option value="0" selected="true">N/a</option>
+    @{
+      foreach (var client in Band.GetAll())
+      { <option value="@client.GetId()">@client.GetName()</option> }
+    }
+  </select>
+  <button type="submit" name="submit">[add]</button>
+</form>

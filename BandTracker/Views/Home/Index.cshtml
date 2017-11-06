@@ -1,9 +1,21 @@
 @{Layout="_Layout";}
 
 <p>list of venues:</p>
+<ul>
 @{
   foreach (var v in Model.GetVenues())
   {
-    <li><a href="/clientList/@v.GetId()/">@v.GetId() : @v.GetName()</a></li>
+    <li><div class="entry">
+      <a href="/clientList/@v.GetId()/">@v.GetId() : @v.GetName()</a> <form method="post" action="/delete/@v.GetId()"><button type="submit" name="submit">[delete]</button></form><form method="post" action="/update/@v.GetId()"><button type="submit" name="submit">[update]</button></form>
+    </div></li>
   }
 }
+</ul>
+<p>---------------------</p>
+<p>enter a name to add a venue to the list:</p>
+<form method="post" action="/add_venue">
+  <input type="text" name="venue-name" placeholder="Venue Name">
+  <button type="submit" name="submit">[add]</button>
+</form>
+<p>click to clear all venues from the list:</p>
+<form method="post" action="/delete_venues"><button type="submit" name="submit">[CLEAR_ALL]</button></form>

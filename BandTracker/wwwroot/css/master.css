@@ -26,7 +26,19 @@ div.nav-bar {
   padding-left: 5%;
   padding-right: 5%;
 }
+div.entry {
+white-space: nowrap;
+width: 100%;
+/*display: inline-block;*/
+}
 div.nav-bar a {
   color: #03ff03;
   text-decoration-color: #03ff03;
+}
+form {
+  color: black;
+}
+button {
+  color: black;
+  font-weight: bold;
 }

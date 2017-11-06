@@ -7,3 +7,11 @@
     <li><a href="/clientList/@Model.GetVenues()[0].GetId()/clientDetails/@b.GetId()/">@b.GetId() : @b.GetName()</a></li>
   }
 }
+<p>---------------------</p>
+<p>enter a name to add a band to the list:</p>
+<form method="post" action="/clientList/@Model.GetVenues()[0].GetId()/add_band">
+  <input type="text" name="band-name" placeholder="Band Name">
+  <button type="submit" name="submit">[add]</button>
+</form>
+<p>click to clear all bands from the venue's list:</p>
+<form method="post" action="/clientList/@Model.GetVenues()[0].GetId()/delete_bands"><button type="submit" name="submit">[CLEAR_ALL]</button></form>
