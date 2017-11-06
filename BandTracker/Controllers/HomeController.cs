@@ -11,28 +11,6 @@ namespace BandTracker.Controllers
     [HttpGet("/")]
     public ActionResult Index()
     {
-      Venue.DeleteAll();
-      Band.DeleteAll();
-
-      Venue venueA = new Venue("venueA");
-      venueA.Save();
-      Venue venueB = new Venue("venueB");
-      venueB.Save();
-      Venue venueC = new Venue("venueC");
-      venueC.Save();
-
-      Band bandA = new Band("bandA");
-      bandA.Save();
-      Band bandB = new Band("bandB");
-      bandB.Save();
-      Band bandC = new Band("bandC");
-      bandC.Save();
-
-      venueA.AddBand(bandA.GetId());
-      venueA.AddBand(bandB.GetId());
-      venueB.AddBand(bandB.GetId());
-      venueC.AddBand(bandC.GetId());
-
       VenueBand model = new VenueBand();
       return View(model);
     }
